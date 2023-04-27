@@ -13,9 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@Data
 @Entity
 @Table(name = "ski_pass")
-@Data
 public class SkiPass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

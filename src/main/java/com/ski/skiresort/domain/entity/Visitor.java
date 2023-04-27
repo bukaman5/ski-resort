@@ -16,9 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "visitor")
-@Data
 public class Visitor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
