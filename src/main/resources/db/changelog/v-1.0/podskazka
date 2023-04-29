@@ -1,0 +1,3 @@
+<column name="id" type="int" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true"/>
+</column>
