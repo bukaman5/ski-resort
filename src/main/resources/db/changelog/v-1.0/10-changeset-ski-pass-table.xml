@@ -6,6 +6,21 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 
+    <changeSet id="3" author="Misha">
+        <createTable tableName="ski_pass">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="pass_validity_period" type="varchar(255)"/>
+            <column name="price" type="int"/>
+            <column name="visitor_id" type="int">
+                <constraints foreignKeyName="visitor_id" referencedTableName="visitor" referencedColumnNames="id"/>
+            </column>
+            <column name="coach_id" type="int">
+                <constraints foreignKeyName="coach_id" referencedTableName="coach" referencedColumnNames="id"/>
+            </column>
 
+        </createTable>
+    </changeSet>
 
 </databaseChangeLog>
