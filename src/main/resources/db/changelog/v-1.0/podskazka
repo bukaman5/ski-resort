@@ -20,3 +20,21 @@
             </databaseChangeLog>
 
             select from join
+
+
+
+
+             <include file="03-changeset-join-table2.xml" relativeToChangelogFile="true"/>
+
+
+                <column name="visitor_id" type="int">
+                             <constraints foreignKeyName="visitor_id" referencedTableName="visitor" referencedColumnNames="id"/>
+                         </column>
+                         <column name="coach_id" type="int">
+                             <constraints foreignKeyName="coach_id" referencedTableName="coach" referencedColumnNames="id"/>
+                         </column>
+
+
+                          <column name="coach_id" type="int">
+                                         <constraints foreignKeyName="coach_id" referencedTableName="coach" referencedColumnNames="id"/>
+                                     </column>

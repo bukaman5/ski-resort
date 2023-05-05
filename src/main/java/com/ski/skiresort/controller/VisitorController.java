@@ -1,5 +1,7 @@
 package com.ski.skiresort.controller;
 
+import com.ski.skiresort.domain.dto.VisitorCoachDto;
+import com.ski.skiresort.domain.dto.VisitorSkiPassDto;
 import com.ski.skiresort.domain.entity.Visitor;
 import com.ski.skiresort.service.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,28 +30,42 @@ public class VisitorController {
     public List<Visitor> findAll() {
         return visitorService.findAll();
     }
+
     @PostMapping("/visitors")
-    public Visitor addVisitor(@RequestBody Visitor theVisitor){
-        theVisitor.setId(0);
+    public Visitor addVisitor(@RequestBody Visitor theVisitor) {
         Visitor dbVisitor = visitorService.save(theVisitor);
         return dbVisitor;
     }
+
     @GetMapping("/visitors/{theId}")
-    public Visitor findById(@PathVariable long theId){
+    public Visitor findById(@PathVariable long theId) {
         return visitorService.findById(theId);
     }
+
     @PutMapping("/visitors")
-    public Visitor updateVisitor(@RequestBody Visitor theVisitor){
+    public Visitor updateVisitor(@RequestBody Visitor theVisitor) {
         Visitor dbVisitor = visitorService.save(theVisitor);
         return dbVisitor;
     }
+
     @DeleteMapping("visitors/{visitorId}")
-    public String deleteVisitor(@PathVariable long visitorId){
+    public String deleteVisitor(@PathVariable long visitorId) {
         Visitor tempVisitor = visitorService.findById(visitorId);
-        if(tempVisitor==null){
+        if (tempVisitor == null) {
             throw new RuntimeException("No visitor with this id:" + visitorId);
         }
-         visitorService.deleteById(visitorId);
+        visitorService.deleteById(visitorId);
         return "Done, deleted visitor:" + tempVisitor;
     }
+
+    @PostMapping("visitors/addCoach")
+    public void addCoach(@RequestBody VisitorCoachDto dto) {
+        visitorService.addCoach(dto);
+    }
+
+    @PostMapping("visitors/addSkiPass")
+    public void addSkiPass(@RequestBody VisitorSkiPassDto dto) {
+        visitorService.addSkiPass(dto);
+    }
+
 }

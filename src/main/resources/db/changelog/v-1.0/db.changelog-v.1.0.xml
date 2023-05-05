@@ -6,10 +6,11 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <include file="01-changeset-visitor-table.xml" relativeToChangelogFile="true"/>
-    <include file="11-changeset-coach-table.xml" relativeToChangelogFile="true"/>
-    <include file="02-changeset-join-table.xml" relativeToChangelogFile="true"/>
-    <include file="10-changeset-ski-pass-table.xml" relativeToChangelogFile="true"/>
-
+    <include file="02-changeset-coach-table.xml" relativeToChangelogFile="true"/>
+    <include file="03-changeset-ski-pass-table.xml" relativeToChangelogFile="true"/>
+    <include file="04-changeset-visitors-coaches-table.xml" relativeToChangelogFile="true"/>
+    <include file="05-changeset-visitors-ski-passes-table.xml" relativeToChangelogFile="true"/>
+    <include file="06-changeset-coaches-ski-passes-table.xml" relativeToChangelogFile="true"/>
 
 
 </databaseChangeLog>
