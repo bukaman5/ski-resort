@@ -6,11 +6,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
 @Table(name = "coach")
 public class Coach {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "full_name")
@@ -33,8 +33,14 @@ public class Coach {
             inverseJoinColumns = @JoinColumn(name = "visitor_id")
     )
     private List<Visitor> visitors;
-    @OneToMany(mappedBy = "coach", cascade = {CascadeType.DETACH, CascadeType.MERGE,
+
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(
+            name = "coach_ski_pass",
+            joinColumns = @JoinColumn(name = "coach_id"),
+            inverseJoinColumns = @JoinColumn(name = "ski_pass_id")
+    )
     private List<SkiPass> skiPasses;
     @Column(name = "category")
     private String category;

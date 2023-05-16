@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class Visitor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private Long id;
 
     @Column(name = "full_name")
     private String fullName;
@@ -31,8 +30,13 @@ public class Visitor {
     @Column(name = "date_of_birth")
     private String dateOfBirth;
 
-    @OneToMany(mappedBy = "visitor", cascade = {CascadeType.DETACH, CascadeType.MERGE,
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(
+            name = "visitor_ski_pass",
+            joinColumns = @JoinColumn(name = "visitor_id"),
+            inverseJoinColumns = @JoinColumn(name = "ski_pass_id")
+    )
     private List<SkiPass> skiPasses;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
